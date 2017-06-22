@@ -23,6 +23,7 @@ Monthly unpaid balance = (Previous balance) - (Minimum monthly payment)
 Updated balance each month = (Monthly unpaid balance) + (Monthly interest rate x Monthly unpaid balance)
 '''
 ######################################################################################################################
+#First 3 lines are not required while submitting in the course
 balance = int (input ("Enter initial balance: "))
 annualInterestRate = float (input ("Enter annnual interest rate: "))
 monthlyPaymentRate = float (input ("Enter monthlyPaymentRate: "))
