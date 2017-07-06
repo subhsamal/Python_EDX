@@ -36,3 +36,4 @@ for i in range (12):
     balance = unpaidBal + interest
 
 print ("%.2f" % balance)         #print the output upto 2 floating point numbers
+print ("balance due:","{0:.2f}".format(round(balance,2)))
