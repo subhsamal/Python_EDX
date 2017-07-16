@@ -264,20 +264,28 @@ def playHand(hand, wordList, n):
 
     points = 0
     total_points = 0
-    while len(hand) !=0:
-        #print ("Current Hand:", displayHand(hand))
-        #print("current Hand", currentHand)
+    while len(hand) > 0:
+        print('Current Hand: ', end='')
+        displayHand(hand)
         word = input ("Enter word, or a '.' to indicate that you are finished: ")
         if word == '.':
-            print ("Quit game")
-            break
-        if isValidWord(word, hand, wordList) == True :
-            point = getWordScore(word, n)
+            print ("Goodbye! Total score: %d  points." % total_points)
+            return
+        elif isValidWord(word, hand, wordList) == True :
+            points = getWordScore(word, n)
             total_points += points
-            print ('" %s "'  "earned %d points. Total: %d points" %(word, points, total_points))
-            hand = updateHand(hand, word)
+            print ('" %s "' " earned %d points. Total: %d points " % (word, points, total_points))
+            print ()
+            if len(hand) == len(word):
+                print ("Run out of letters. Total score:  %d  points." % total_points)
+                return
+            else:    
+                hand = updateHand(hand, word)
+                if all(value == 0 for value in hand.values()):
+                    print ("Run out of letters. Total score:  %d  points." % total_points)        
+
         else:
-            print ("Invalid word\n")
+            print ("Invalid word, please try again.\n")
 #
 # Problem #5: Playing a game 
 
@@ -293,7 +301,41 @@ def playGame(wordList):
  
     2) When done playing the hand, repeat from step 1    
     """
+    i = input ("Enter n to deal a new hand, r to replay the last hand,\
+        or e to end game: ")
+    hand = None
+    store = None
+    if i not in {'n','r','e'}:
+        print ("Invalid command.")
+        playGame(wordList)
+    #hand = dealHand(HAND_SIZE)    
+    while i in {'n', 'r', 'e'}:
+        #hand = dealHand(HAND_SIZE)
+        if i == 'n':
+            hand = dealHand(HAND_SIZE)
+            store = hand
+            playHand(store, wordList, HAND_SIZE)
+            break
+            #playGame(wordList)
+        elif i == 'r':
+            if  hand == None:
+                print ("store" , store, hand)
+                print ("You have not played a hand yet. Please play a new hand first!")
+                playGame(wordList) 
+            else:                
+                playHand(hand, wordList, HAND_SIZE)
+        elif i =='e':
+            print ("None")
+            break
+        else:
+            pass
+    
+        
 
+        
+                
+                
+     
         
 
 

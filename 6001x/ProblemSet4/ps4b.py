@@ -125,9 +125,55 @@ def playGame(wordList):
     wordList: list (string)
     """
     # TO DO... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this when you code this function
-
-        
+    hand = {}
+    while True:
+        i = input ('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
+        if i == 'r' and hand == {}:
+            print ("You have not played a hand yet. Please play a new hand first!")
+            i = input ('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
+            if i not in {'n', 'e'}:
+                continue
+        elif i == 'r' and hand != {}:
+            store = hand
+            j = input ("Enter u to have yourself play, c to have the computer play:")
+            if j == 'u':
+                playHand(store, wordList, HAND_SIZE)
+            elif j == 'c':
+                compPlayHand(store, wordList, HAND_SIZE)
+            else:
+                j = input ("Enter u to have yourself play, c to have the computer play:")
+                
+    #while i not in {'n', 'r', 'e'}:
+        #i = input ('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')       
+    #while i in {'n', 'r', 'e'}:
+        elif i == 'n':
+            j = input ("Enter u to have yourself play, c to have the computer play:")
+            hand = dealHand(HAND_SIZE)
+            if j == 'u':
+                store = hand
+                #hand = dealHand(HAND_SIZE)
+                playHand(store, wordList, HAND_SIZE)
+            elif j == 'c':
+                compPlayHand(store, wordList, HAND_SIZE)
+                #playGame(wordList)
+            else:
+                j = input ("Enter u to have yourself play, c to have the computer play:")
+                continue
+        #elif i == 'r':
+           # print ("Enter u to have yourself play, c to have the computer play:")
+            #if j == 'u':
+               # playHand(hand, wordList, HAND_SIZE)
+           # elif j == 'c':
+               # compPlayHand(hand, wordList, HAND_SIZE)
+                #playGame(wordList)
+            #else:
+                #j = input ("Enter u to have yourself play, c to have the computer play:")
+                #continue
+                
+        elif i == 'e':
+            print (None)
+            break
+            
 #
 # Build data structures used for entire session and play game
 #
