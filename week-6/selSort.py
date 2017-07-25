@@ -12,7 +12,7 @@ def selSort(L):
         minIndx = i
         minVal= L[i]
         j = i + 1
-        while j < len(L):
+        while j < len(L):                #At the end of one while loop one element will be sorted. 
             if minVal > L[j]:
                 minIndx = j
                 minVal= L[j]
